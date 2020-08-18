@@ -14,7 +14,7 @@ nav
 
   background-color : white;
   font-family: Arial,sans-serif;
-  height:120px;
+  height:160px;
 
 }
 
@@ -22,6 +22,7 @@ nav ul
 {
   float:right;
   margin-right:60px;
+  margin-top:30px;
 }
 
 nav ul li
@@ -62,7 +63,8 @@ a
 }
 .logo
 {
-  margin:10px 0px 10px 50px ;
+  height:160px ;
+  margin-left: 150px;
 
 }
 
@@ -151,6 +153,13 @@ body
 {
   color : #5e6167;
   font-size:20px;
+}
+@media screen and (max-width:1450px)
+{
+  .logo
+  {
+    margin-left:0px;
+  }
 }
 
 @media screen and (max-width:1400px)
