@@ -175,6 +175,7 @@ body
 {
   color : #5e6167;
   font-size:20px;
+  cursor:pointer;
 }
 
 /* slider styling*/
@@ -242,9 +243,10 @@ body
 
 .slider-bar
 {
+  width:200px;
   position:absolute;
-  bottom:300px;
-  left : 300px;
+  bottom:100px;
+  left : 340px;
 }
 
 

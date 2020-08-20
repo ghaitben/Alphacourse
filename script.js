@@ -45,6 +45,7 @@ window.onscroll = function(){
 const slides = document.querySelectorAll('.slide');
 const next = document.querySelector('#next');
 const prev = document.querySelector('#prev');
+const slideBar = document.querySelector('.slider-bar');
 const auto = true;
 const timeInterval = 4000;
 let slideInterval;
@@ -68,7 +69,7 @@ const nextSlide = () => {
 
   current.classList.remove('current');
 
-  if(current.nextElementSibling)
+  if(current.nextElementSibling && current.nextElementSibling != slideBar)
   {
     current.nextElementSibling.classList.add('current');
 
