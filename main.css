@@ -16,6 +16,7 @@ nav
   font-family: Arial,sans-serif;
   height:160px;
   width:100%;
+  z-index: 500;
 }
 
 .secondary
@@ -100,9 +101,7 @@ body
 {
   background-color : #f6f6f8;
 
-
 }
-
 
 
 #INPUT_1 {
@@ -177,6 +176,112 @@ body
   color : #5e6167;
   font-size:20px;
 }
+
+/* slider styling*/
+
+.slider
+{
+  position:relative;
+  width : 100%;
+  height:560px;
+
+}
+
+.slide
+{
+  position:absolute;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  opacity:0;
+  transition: opacity 0.9s ease-in-out;
+}
+
+
+
+.slide.current
+{
+  opacity:1;
+}
+
+.slide .content
+{
+
+  position :absolute;
+  top :150px;
+  left :100px;
+  opacity:0;
+  transition: all 0.4s ease-in-out;
+  color:white;
+  background-color: transparent;
+  padding : 50px;
+  font-size:30px;
+
+}
+
+
+.slide.current .content
+{
+  opacity:1;
+  transform: translateX(100px);
+  transition: all 0.7s ease-in-out 0.8s;
+
+}
+
+.slider-bar li
+{
+  display:inline-block;
+  width:40px;
+  height:3px;
+  background-color:#ccc;
+  cursor:pointer;
+
+}
+
+
+.slider-bar
+{
+  position:absolute;
+  bottom:300px;
+  left : 300px;
+}
+
+
+
+
+
+.slide:first-child {
+  background: url('images/background1.png') no-repeat
+    center center/cover;
+
+
+}
+.slide:nth-child(2) {
+  background: url('images/background 2.png') no-repeat
+    center center/cover;
+
+  background-position: 0 -550px;
+
+}
+.slide:nth-child(3) {
+  background: url('images/Background3.png') no-repeat
+    center top/cover;
+
+  background-position : 0px -400px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 @media screen and (max-width:1450px)
 {
   .logo
