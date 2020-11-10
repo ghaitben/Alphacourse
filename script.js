@@ -1,184 +1,131 @@
-// search value is deleted once the search field looses focus
-const searchBar = document.getElementById('INPUT_1');
-
-searchBar.addEventListener('blur', function(){
-
-  searchBar.value = "";
-
+// clear the searchbar when it's not in focus
+const search_bar = document.getElementById("search");
+search_bar.addEventListener('blur',function(){
+  search_bar.value = "";
 });
 
-//the menu on phone is not left open
-const checkbox = document.getElementById('check');
+//dynamic search bar
 
-window.addEventListener('resize',function(){
+real_data = ["Computer science","Python","Linear algebra"]
 
-  if(window.matchMedia('(min-width: 1100px)').matches && checkbox.checked)
+search_bar.addEventListener('keyup' , e => {
+  var search_value = search_bar.value;
+  var new_data = searchData(search_value,real_data);
+  buildData(new_data);
+});
+
+
+function searchData(value,data){
+
+  var array = [];
+
+  for(var i = 0; i < data.length ; i++)
   {
-    checkbox.checked = false;
+    value = value.toLowerCase();
+    var subject = data[i].toLowerCase();
+
+    if(subject.includes(value))
+    {
+      array.push(data[i]);
+    }
+  }
+  return array;
+}
+
+
+function buildData(array){
+
+  element = document.getElementById('main');
+  element.innerHTML = "";
+  for(var i = 0; i < array.length;i++)
+  {
+    element.innerHTML += `<div>
+                              ${array[i]}
+                          </div>`;
 
   }
-},true);
 
+}
+// javascript for slider
 
-
-//dynamic naviguation bar ,showing and hiding based on sroll direction
-const navBar = document.getElementsByClassName('secondary')[0];
-
-window.onscroll = function(){
-
-  var pos = window.pageYOffset;
-
-  if(pos > 160 && window.innerWidth > 1100)
-  {
-
-
-    navBar.style.top = "0px";
-  }
-  if(pos < 160 && window.innerWidth > 1100)
-  {
-    //navBar.style.display = "none";
-    navBar.style.top = "-160px";
-
-  }
-};
-//javascirpt code for the slider
 const slides = document.querySelectorAll('.slide');
-const next = document.querySelector('#next');
-const prev = document.querySelector('#prev');
-const slideBar = document.querySelector('.slider-bar');
+const buttons = document.querySelectorAll('.buttons');
 const auto = true;
-const timeInterval = 4000;
+const intervalTime = 5000;
 let slideInterval;
-const items = document.querySelectorAll('.items');
-const buttons  = document.querySelectorAll('.slideButton');
 let index = 0;
-items[0].style.backgroundColor = "#ffcc66";
+
+buttons[0].style.backgroundColor = "#ffff1a";
 
 const nextSlide = () => {
 
+  //GET the current slide
   const current = document.querySelector('.current');
 
-  for(let i = 0 ; i < slides.length ; i++)
+  //check where is the current slide right now and color the appropriate bar in yellow
+
+  for(var i = 0; i < slides.length; i++)
   {
-    if(current === slides[i])
+    if(slides[i] === current)
     {
       index = i;
     }
   }
 
-
-  current.classList.remove('current');
-
-  if(current.nextElementSibling && current.nextElementSibling != slideBar)
+  //remove the class from current
+  current.classList.remove("current");
+  //check if there is any next slide
+  if(current.nextElementSibling)
   {
-    current.nextElementSibling.classList.add('current');
-
+    current.nextElementSibling.classList.add('current')
   }
   else
   {
-    slides[0].classList.add('current');
+      slides[0].classList.add('current')
   }
-  items.forEach(element => {
-    element.style.backgroundColor = "#ccc";
-  });
-  items[(index+1)%3].style.backgroundColor = "#ffcc66";
-  setTimeout(() => current.classList.remove('current'));
 
+  buttons.forEach(element => {
+    element.style.backgroundColor = "lightgrey";
+  });
+
+  buttons[(index+1)%3].style.backgroundColor = "#ffff1a";
+
+
+
+  setTimeout(() => current.classList.remove('current'));
+};
+
+// change slides when clicking on the bars
+function barClick(idx){
+
+  buttons[idx].addEventListener('click',e => {
+    const current = document.querySelector('.current');
+
+    current.classList.remove('current');
+
+    slides[idx].classList.add('current');
+
+    buttons.forEach(element => {
+      element.style.backgroundColor = "lightgrey";
+    });
+
+    buttons[idx].style.backgroundColor = "#ffff1a";
+
+    clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, intervalTime);
+
+  });
 }
 
-
-
-
-buttons[0].addEventListener('click', e => {
-
-  // turn all buttons to grey
-  items.forEach(element => {
-
-    element.style.backgroundColor = "#ccc";
-  });
-
-  //color the right btutton in #ffcc66
-
-  items[0].style.backgroundColor = "#ffcc66";
-
-  //slide movement
-
-  const current = document.querySelector('.current');
-
-  current.classList.remove('current');
-
-  slides[0].classList.add('current');
-  if(auto)
-  {
-    clearInterval(slideInterval);
-    slideInterval = setInterval(nextSlide , timeInterval);
-  }
-
-});
-
-
-
-buttons[1].addEventListener('click', e => {
-
-  // turn all buttons to grey
-  items.forEach(element => {
-
-    element.style.backgroundColor = "#ccc";
-  });
-
-  //color the right btutton in #ffcc66
-
-  items[1].style.backgroundColor = "#ffcc66";
-
-  //slide movement
-
-  const current = document.querySelector('.current');
-
-  current.classList.remove('current');
-
-  slides[1].classList.add('current');
-
-  if(auto)
-  {
-    clearInterval(slideInterval);
-    slideInterval = setInterval(nextSlide , timeInterval);
-
-  }
-
-});
-
-
-
-
-buttons[2].addEventListener('click', e => {
-
-  // turn all buttons to grey
-  items.forEach(element => {
-
-    element.style.backgroundColor = "#ccc";
-  });
-
-  //color the right btutton in #ffcc66
-
-  items[2].style.backgroundColor = "#ffcc66";
-
-  //slide movement
-
-  const current = document.querySelector('.current');
-
-  current.classList.remove('current');
-
-  slides[2].classList.add('current');
-  if(auto)
-  {
-    clearInterval(slideInterval);
-    slideInterval = setInterval(nextSlide , timeInterval);
-
-  }
-
-});
+barClick(0);
+barClick(1);
+barClick(2);
 
 if(auto)
 {
-  slideInterval = setInterval(nextSlide , timeInterval);
+  slideInterval = setInterval(nextSlide,intervalTime);
 }
+
+
+
+//

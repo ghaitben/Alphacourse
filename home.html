@@ -1,84 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="main.css">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <title>AlphaCourse</title>
-  </head>
+	<head>
+		<meta charset="utf-8">
+		<title>AlphaCourse</title>
+		<link rel="stylesheet" href="main.css">
+	</head>
 
-  <body>
-    <nav>
+	<body>
 
-      <input type="checkbox" id = "check">
-      <label for="check" class = "checkbutton"> <i class = "fa fa-bars"></i> </label>
+		<nav>
+
+			<ul>
+				<li id = "item1" class = "nav_item">logo</li>
+				<li id = "item2" class = "nav_item"> <input id = "search" type="search" placeholder="What do you want to learn ? "> </li>
+				<li id = "item3" class = "nav_item">LOG IN </li>
+				<li id = "item4" class = "nav_item">SIGN UP </li>
+			</ul>
+
+		</nav>
+
+		<div class="slider">
+			<div class="slide current">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+			</div>
+
+			<div class="slide">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+
+			</div>
+
+			<div class="slide">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+			</div>
 
 
-      <img src="images/logo.png" alt="" class = "logo">
-      <ul>
-        <li class = "item"><a href="#">COURSES</a></li>
-        <li class = "item"><a href="#">ROADMAPS</a></li>
-        <li class = "item"><a href="#">SOURCES</a></li>
-        <li class = "item"><a href="#">ABOUT</a></li>
-        <li><input type="search" name="s" placeholder="Search for courses..." id="INPUT_1" /><i class = "fa fa-search" id = "search"></i></li>
-
-
-      </ul>
-    </nav>
-    <nav class = "secondary">
-
-      <input type="checkbox" id = "check">
-      <label for="check" class = "checkbutton"> <i class = "fa fa-bars"></i> </label>
-
-
-      <img src="images/logo.png" alt="" class = "logo">
-      <ul>
-        <li class = "item"><a href="#">COURSES</a></li>
-        <li class = "item"><a href="#">ROADMAPS</a></li>
-        <li class = "item"><a href="#">SOURCES</a></li>
-        <li class = "item"><a href="#">ABOUT</a></li>
-        <li><input type="search" name="s" placeholder="Search for courses..." id="INPUT_1" /><i class = "fa fa-search" id = "search"></i></li>
-
-      </ul>
-    </nav>
-
-    <div class="slider">
-
-      <div class="slide current">
-        <div class="content">
-          <h3>content for slide one</h3>
-        </div>
-      </div>
-
-      <div class="slide">
-        <div class="content">
-          <h3>content for slide two</h3>
-        </div>
-      </div>
-
-      <div class="slide">
-        <div class="content">
-          <h3>content for slide three</h3>
-        </div>
-      </div>
+		</div>
+		<ul class = "slider_buttons">
+			<li class = "buttons">    </li>
+			<li class = "buttons">    </li>
+			<li class = "buttons">    </li>
+		</ul>
 
 
 
-      <ul class = "slider-bar">
-        <a class = "slideButton"><li class = "items"></li></a>
-        <a class = "slideButton"><li class = "items"></li></a>
-        <a class = "slideButton"><li class = "items"></li></a>
-      </ul>
-    </div>
+	</body>
 
-
-
-    <div style="margin-top:5000px">
-
-    </div>
-
-  <script src = "script.js"></script>
-  </body>
-
-
+	<script type="text/javascript" src="script.js"></script>
 </html>
