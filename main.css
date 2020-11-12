@@ -6,6 +6,8 @@
 
 
 
+
+
 }
 body
 {
@@ -20,6 +22,7 @@ nav
   background-color: white;
   height:70px;
   box-shadow: 0 0 3pt 3pt lightgrey;
+  z-index: 1;
 }
 
 .nav_item
@@ -81,10 +84,9 @@ nav
   border:2px solid blue;
   border-radius: 10px;
   line-height: 2.75em;
-  transition: 0.2s;
+  transition:0.2s;
 
 }
-
 #item3:hover
 {
   cursor:pointer;
@@ -118,28 +120,29 @@ nav
   transition: 0.2s;
 }
 /*  Container CSS a div containing a subject using css grid */
-.container
+.grid_container
 {
-  overflow:auto;
-  height:600px;
+  position: relative;
+  height:570px;
   display:grid;
   grid-template-columns:repeat(4,1fr);
   grid-gap:1em;
-  padding:40px;
-  background-color:white;
-  margin-left: 150px;
-  margin-right: 150px;
+  padding-top: 350px;
+  padding-left: 200px;
+  padding-right: 200px;
+  background-color:#293b4a;
 
 
 }
-.container > div
+.grid_container > div
 {
-
+  background-color: rgba(255,255,255,0.1);
+  color: white;
   font-family: sans-serif;
   font-size: 20px;
   font-weight: bold;
-  border:2px solid black;
-  padding:40px;
+  border:3px solid rgba(255,255,255,0.25);
+  padding-top:40px;
   height:110px;
   width:270px;
   box-sizing:border-box;
@@ -148,11 +151,37 @@ nav
   transition:0.3s;
 }
 
-.container > div:hover
+.grid_container > div:hover
 {
-  box-shadow: 0 0 4pt 4pt lightgrey;
+  box-shadow: 0 0 2pt 2pt white;
   cursor:pointer;
   transition:0.3s;
+}
+
+.text
+{
+  font-family: Benton Sans ,Arial, Helvetica Neue, Helvetica, Sans-serif;
+  grid-column: 1/5;
+  color:white;
+  position: absolute;
+  left:370px;
+  top : 90px;
+  font-size: 25px;
+}
+.text_under
+{
+  font-family: Benton Sans ,Arial, Helvetica Neue, Helvetica, Sans-serif;
+  grid-column: 1/5;
+  font-size: 19px;
+  line-height: 1.5em;
+  position: absolute;
+  left:440px;
+  top : 175px;
+  color:rgba(255,255,255,0.7);
+  width:500px;
+  max-height: 1000px;
+  text-align: center;
+
 }
 
 /*CSS for the slider*/
@@ -162,7 +191,7 @@ nav
   position:relative;
   overflow:hidden;
   height:80vh;
-  width:100vw;
+
 }
 
 .slide
@@ -189,11 +218,14 @@ nav
 
 .slide p
 {
-  font-size: 20px;
-  font-weight: bold;
+  font-family: "benton sans", Arial, "Helvetica Neue", Helvetica, sans-serif;;
+  font-size: 37px;
   position:absolute;
+  width:1000px;
+  line-height: 1.6em;
+  text-align: left;
   left:-150px;
-  bottom:500px;
+  top:80px;
   opacity:0;
   transition: all 0.5s ease-in-out;
 }
@@ -208,9 +240,10 @@ nav
 
 .slider_buttons
 {
+  z-index:0;
   position:absolute;
-  bottom:250px;
-  left:380px;
+  bottom:330px;
+  left:280px;
 
 }
 
@@ -223,11 +256,11 @@ nav
   color:white;
   display:inline-block;
 }
+
 .buttons:hover
 {
   cursor:pointer;
 }
-
 
 
 .slide:first-child
@@ -241,7 +274,8 @@ nav
 
 .slide:nth-child(2)
 {
-  background: url("images/background8.jpg") no-repeat center top/cover;
+  background: url("images/background2.jpg") no-repeat center top/cover;
+  background-position:0px -250px;
 
 }
 
@@ -249,4 +283,112 @@ nav
 {
   background: url("images/background4.jpg") no-repeat center top/cover;
 
+}
+/*CSS for the text below the slider*/
+
+.intro_content
+{
+  position:absolute;
+  bottom:320px;
+  left:700px;
+  color:white;
+  font-weight: bold;
+  font-family: 'Fira Sans', sans-serif;
+
+}
+/*------------------CSS for bouncing double arrows---------------*/
+
+.container {margin: 0 auto; width:90px;height:90px; position: absolute; left:800px;bottom:200px;}
+.container:hover{cursor:pointer;}
+.circle:hover{background:white;color:black; transition: 0.3s}
+.circle {background: transparent; border-radius: 100%; text-align: center; padding: 15px 0 0 0; line-height: 50px; color: white; transition: 0.3s}
+.introText {background: #f26522;  padding: 30px 0;}
+.introText h1 {line-height: 1.5em!important;}
+
+/*-------------Infinite Bouncing Arrow----------*/
+
+.bounce {
+  -moz-animation: bounce 2s infinite;
+  -webkit-animation: bounce 2s infinite;
+  animation: bounce 2s infinite;
+}
+
+@-moz-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -moz-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -moz-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+  60% {
+    -moz-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+}
+@-webkit-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+  60% {
+    -webkit-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -moz-transform: translateY(-30px);
+    -ms-transform: translateY(-30px);
+    -webkit-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+  60% {
+    -moz-transform: translateY(-15px);
+    -ms-transform: translateY(-15px);
+    -webkit-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+}
+/*end of bouncing arrow CSS*/
+
+/*css for footer*/
+.footer
+{
+  height:200px;
+  background-color: #142736;
+  display:grid;
+  color:white;
+  font-weight: bold;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-left:400px;
+  padding-right:400px;
+  padding-top:50px;
+  padding-bottom:50px;
+  text-align: center;
+  font-family: Benton Sans ,Arial, Helvetica Neue, Helvetica, Sans-serif;
+}
+.have_vertical_bar
+{
+  border-right:2px solid rgba(255,255,255,0.7);
+}
+.technologies
+{
+  color:rgba(255,255,255,0.7);
+  font-family: Benton Sans ,Arial, Helvetica Neue, Helvetica, Sans-serif;
+  font-size: 15px;
+  text-align: left;
+  padding-left: 130px;
+  margin-top: 20px;
 }

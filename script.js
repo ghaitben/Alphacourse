@@ -1,10 +1,12 @@
-// clear the searchbar when it's not in focus
+  // clear the searchbar when it's not in focus
 const search_bar = document.getElementById("search");
 search_bar.addEventListener('blur',function(){
   search_bar.value = "";
 });
 
-//dynamic search bar
+//dynamic search bar + scroll when focus + scroll when clicking on the arrow
+
+
 
 real_data = ["Computer science","Python","Linear algebra"]
 
@@ -36,7 +38,7 @@ function searchData(value,data){
 function buildData(array){
 
   element = document.getElementById('main');
-  element.innerHTML = "";
+  element.innerHTML = "<h2 class = 'text'>FREQUENTLY VISITED SUBJECTS ON ALPHACOURSE</h2> <p class='text_under'>Look up the subject you like by typing it down in the search bar above. Don't forget to sign up to be able to post online courses to enrich the AlphaCourse community !</p>";
   for(var i = 0; i < array.length;i++)
   {
     element.innerHTML += `<div>
@@ -46,6 +48,22 @@ function buildData(array){
   }
 
 }
+
+//scroll when keyup
+const target = document.querySelector('.grid_container');
+
+search_bar.addEventListener("focus", function scrollToTarget() {
+  target.scrollIntoView({behavior:"smooth"});
+
+});
+
+//scroll when clicking on the arrows
+const arrow = document.querySelector(".container");
+arrow.addEventListener("click", e => {
+  target.scrollIntoView({behavior:"smooth"});
+});
+
+
 // javascript for slider
 
 const slides = document.querySelectorAll('.slide');
@@ -125,7 +143,14 @@ if(auto)
 {
   slideInterval = setInterval(nextSlide,intervalTime);
 }
-
-
-
-//
+//javascript for bouncing arrows
+$("#arrow").click(function() {
+    doBounce($(this), 3, '10px', 200);
+});
+function doBounce(element, times, distance, speed) {
+    for(var i = 0; i < times; i++) {
+        element.animate({marginTop: '-='+distance}, speed)
+            .animate({marginTop: '+='+distance}, speed);
+    }
+}
+//end of bouncing arrows javascript
