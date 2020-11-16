@@ -154,3 +154,49 @@ function doBounce(element, times, distance, speed) {
     }
 }
 //end of bouncing arrows javascript
+
+
+//javascript for login dropdown
+const login = document.querySelector("#item3");
+const pages = document.querySelectorAll('.appearing_page');
+const overlay = document.querySelector('.overlay');
+const signup = document.querySelector('#item4');
+
+
+login.addEventListener('click', e =>
+{
+  window.scrollTo({
+    top:0,
+    left:0,
+    behavior:"smooth"
+  });
+
+  pages[0].classList.add('appear');
+  overlay.style.display = "block";
+});
+//javascript for sign up dropdown
+
+
+signup.addEventListener('click', e =>
+{
+  window.scrollTo({
+    top:0,
+    left:0,
+    behavior:"smooth"
+  });
+  pages[1].classList.add('appear');
+  overlay.style.display = "block";
+
+});
+
+
+
+//function to disable the overlay when clicking on it
+
+function overlay_off(){
+  overlay.style.display = "none";
+  pages.forEach(element => {
+    element.classList.remove('appear');
+  });
+  
+}

@@ -5,7 +5,7 @@
 		<title>AlphaCourse</title>
 		<link rel="stylesheet" href="main.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+		<script src="jquery-3.5.1.min.js"></script>
 
 
 
@@ -18,9 +18,12 @@
 			<ul>
 				<li id = "item1" class = "nav_item">logo</li>
 				<li id = "item2" class = "nav_item"> <input id = "search" type="search" placeholder="What do you want to learn ?... "> </li>
-				<li id = "item3" class = "nav_item">LOG IN </li>
 				<li id = "item4" class = "nav_item">SIGN UP </li>
+				<li id = "item3" class = "nav_item">LOG IN</li>
 			</ul>
+
+
+
 
 		</nav>
 
@@ -117,6 +120,75 @@
 			</div>
 
 		</div>
+<!--        HTML for appearing log in page when clicked -->
+		<div class="appearing_page">
+			<div class="form_title">
+				Welcome Back to AlphaCourse !
+			</div>
+			<div class="subtitle">
+				Enter you account's credentials
+			</div>
+
+			<div class = "input_1">
+				<input type="text" class ="form_input_1" id = "username" placeholder=" " spellcheck="false">
+				<label for="username" class = "placeholder">Username</label>
+			</div>
+
+			<div class="input_2">
+				<input type="password" class = "form_input_1" id = "password" placeholder = " " spellcheck="false"  style="-webkit-text-security:square;">
+				<label for="password" class = "placeholder">Password</label>
+			</div>
+
+			<div class="input_3">
+				<button type="button" class="login">Log In</button>
+			</div>
+		</div>
+
+
+		<!-- html for appearing sign up page-->
+		<div class="appearing_page">
+			<div class="form_title">
+				Welcome to AlphaCourse
+			</div>
+			<div class="subtitle">
+				Let's create your account !
+			</div>
+
+			<div class="input_1">
+				<input type="text" class ="form_input_1" id = "username" placeholder=" " spellcheck="false">
+				<label for="username" class = "placeholder">Username</label>
+			</div>
+
+			<div class="input_2">
+				<input type="email" class ="form_input_1" id = "email" placeholder=" " spellcheck="false">
+				<label for="email" class = "placeholder">Email</label>
+			</div>
+
+			<div class="input_3">
+				<input type="password" class = "form_input_1" id = "password" placeholder = " " spellcheck="false"  style="-webkit-text-security:square;">
+				<label for="password" class = "placeholder">Password</label>
+			</div>
+
+			<div class="input_4">
+				<input type="password" class = "form_input_1" id = "password" placeholder = " " spellcheck="false"  style="-webkit-text-security:square;">
+				<label for="password" class = "placeholder">Confirm password</label>
+			</div>
+
+			<div class="input_5">
+				<button type="button" class="login">Sign Up</button>
+			</div>
+
+		</div>
+
+
+
+
+		<div class="overlay" onclick="overlay_off()">
+
+		</div>
+
+
+
 		<footer class="footer">
 			<div class = "have_vertical_bar">
 				<span style="text-decoration:underline;">Tehnologies</span>
@@ -140,4 +212,5 @@
 	</body>
 
 	<script type="text/javascript" src="script.js"></script>
+
 </html>
