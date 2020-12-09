@@ -1,0 +1,100 @@
+<nav class = "course_navbar">
+  <ul>
+    <li id = "logo">logo</li>
+    <li id = "subject">{{subject}}</li>
+    <a href="/user/signup"><li id = "item4">SIGN UP</li></a>
+    <a href="/user/login"><li id = "item3">LOG IN</li></a>
+    <a href="/subjects"> <li class = "nav_li not_logged" id = "browse" >Browse Subjects</li> </a>
+    <a href="/share/choose_subject"> <li class = "nav_li not_logged" id="share">Share Ressource</li> </a>
+  </ul>
+</nav>
+
+<nav class = "responsive_nav">
+  <p style = "color:black;" id = "logo">logo</p>
+  <input style = "display:none;"type="checkbox" id ="menuc">
+  <label class = "main_menu" for="menuc"> <i id = "menuc" class="fas fa-bars"></i>
+  </label>
+
+  <ul>
+    <li style = "color:black;">{{subject}}</li>
+    <a href="/subjects"> <li>Browse Subjects</li> </a>
+    <a href="/share/choose_subject"> <li>Share Ressource</li> </a>
+    <a href="/user/signup"><li id = "sign">SIGN UP</li></a>
+    <a href="/user/login"><li id = "log">LOG IN</li></a>
+  </ul>
+</nav>
+
+{{> success}}
+<div class="search_bar_div">
+  <form action="{{subject}}" method="GET">
+    <input type="text" name="search" placeholder="Search..." class = "search_bar">
+    <button type="submit" class="button_search"><i class="fas fa-search"></i> </button>
+  </form>
+</div>
+<div class="form_title" style = "font-size:22px;" id = "results{{bool}}">
+  Results for: {{search_value}}
+</div>
+
+<div class="course_container">
+  <div class="restriction">
+    <span>You should be logged in in order to do that operation</span>
+  </div>
+  {{#each results}}
+  <a href="{{this.link}}" target = "_blank" style = "color:white;">
+    <div class="course">
+
+      <div class="course_title">
+          {{this.title}}
+      </div>
+
+      <div class="top_arrow arrow {{this.voters.color}}" id = "\3{{this._id}}" onclick = "upvote_lg(this)"> <i class="far fa-thumbs-up" id ="up"></i> </div>
+      <div class="bot_arrow arrow {{this.voters.color}}" id = "\3{{this._id}}" onclick = "upvote_lg(this)"> <i class="far fa-thumbs-down"></i> </div>
+      <div class="score" id ="\3{{this._id}}_score">{{this.score}}</div>
+
+
+      <div class="course_type">
+        Type: <span class= "ressource_type" id = "{{this.type}}">{{this.type}}</span>
+        Source: <img src="http://localhost:8000/source_logos/{{this.source}}.svg" class = "ressource_image {{this.source}}">
+        <span class = "poster">Posted by : {{this.user}} <i class="fas fa-cannabis" style= "color:lightgreen"></i> <span style = "color:white;">{{this.weeds}}</span></span>
+      </div>
+
+      <div class="course_type responsive">
+
+        <ul style = "line-height:3em;">
+          <li>Type: <span class = "typeres" id = "{{this.type}}">{{this.type}}</span></li>
+          <li>Source: <img src="http://localhost:8000/source_logos/{{this.source}}.svg" id ="img"></span></li>
+          <li>Posted by : {{this.user}} <i class="fas fa-cannabis" style= "color:lightgreen"></i> <span style = "color:white;">{{this.weeds}}</span></li>
+        </ul>
+
+      </div>
+    </div>
+  </a>
+  {{/each}}
+  <div class="not_found" style = "display:{{display}};">
+    <span class = "unfound">No results matching {{search_value}}</span>
+  </div>
+  <div class = "back" style = "display:{{display}}; margin-top:20px;">
+    <a href="{{subject}}" class = "go_back"> Back to course page</a>
+  </div>
+</div>
+<div class="pagination">
+  <a href = "{{subject}}?page_number={{page_numberl}}" class = "prev {{arrow_status}}"><i class="fas fa-chevron-circle-left" style =" color:white;" ></i> </a>
+  <span class = "page_number {{arrow_status}}">{{page_number}}</span>
+  <a href="{{subject}}?page_number={{page_numberr}}" class = "next {{arrow_status}}"><i class="fas fa-chevron-circle-right" style = "color:white;"></i></a>
+</div>
+
+<script type="text/javascript">
+  const like = document.querySelectorAll('.arrow');
+  like.forEach((item) => {
+    item.addEventListener("click" , (e) => {
+      e.preventDefault();
+    });
+  });
+  function upvote_lg(){
+    document.querySelector('.restriction').style.display = "block";
+    setTimeout(function(){
+      document.querySelector('.restriction').style.display = "none";
+    },5000);
+  }
+
+</script>

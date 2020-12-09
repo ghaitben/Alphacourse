@@ -1,0 +1,16 @@
+{{#if success_msg}}
+<div class="success">
+  {{success_msg}}
+</div>
+<script type="text/javascript">
+  setTimeout(() => {
+    document.querySelector('.success').style.display = "none";
+  },3500);
+</script>
+{{/if}}
+
+{{#if error}}
+  <div class="login_error">
+    {{error}}
+  </div>
+{{/if}}

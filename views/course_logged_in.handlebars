@@ -1,0 +1,266 @@
+<nav class = "course_navbar">
+  <ul>
+    <li id = "item1" class = "nav_item">logo</li>
+    <li id = "subject">{{subject}}</li>
+    <li class = "nav_item username">{{username}}</li>
+    <li class = "nav_item username contribs"> <i class="fas fa-cannabis"></i> {{weeds}} </li>
+    <a href="/profile"><li class ="logout">Saved</li> </a>
+    <a href="/logout"><li class = "logout"> Log Out</li></a>
+    <a href="/subjects"> <li class = "nav_li " id = "browse">Browse Subjects</li> </a>
+    <a href="/share/choose_subject"> <li class = "nav_li" id = "share">Share Ressource</li> </a>
+  </ul>
+
+</nav>
+
+<nav class = "responsive_nav">
+  <p style = "color:black;" id = "logo">logo</p>
+  <input style = "display:none;"type="checkbox" id ="menuc">
+  <label class = "main_menu" for="menuc"> <i id = "menuc" class="fas fa-bars"></i>
+  </label>
+  <ul>
+    <li style = "color:black;">{{subject}}</li>
+    <li>{{username}}</li>
+    <li style = "color:#13aa52;"> <i class="fas fa-cannabis"></i> {{weeds}} </li>
+    <a href="/share/choose_subject"> <li>Share Ressource</li> </a>
+    <a href="/subjects"> <li>Browse Subjects</li> </a>
+    <a href="/logout"><li id = "log"> Log Out</li></a>
+    <a href="/profile"><li id = "log">Saved</li> </a>
+  </ul>
+</nav>
+
+{{> success}}
+<div class="search_bar_div">
+  <form action="{{subject}}" method="GET">
+    <input type="text" name="search" placeholder="Search..." class = "search_bar">
+    <button type="submit" class="button_search"><i class="fas fa-search"></i> </button>
+  </form>
+</div>
+<div class="form_title" style = "font-size:22px;" id = "results{{bool}}">
+  Results for: {{search_value}}
+</div>
+
+<div class="course_container">
+  {{#each results}}
+  <a href="{{this.link}}" target = "_blank" style = "color:white;">
+
+    <div class="course">
+
+      <div class="course_title">
+          {{this.title}}
+      </div>
+
+      <div class="saved {{this.saved}}" id = "\3s{{this._id}}">
+        <i class="fas fa-check-circle"></i> Saved
+      </div>
+
+
+      <div class="top_arrow arrow {{this.voters.color}}" id = "\3{{this._id}}" onclick = "upvote(this)"> <i class="far fa-thumbs-up" id ="up"></i> </div>
+      <div class="bot_arrow arrow {{this.voters.color}}" id = "\3{{this._id}}" onclick = "downvote(this)"> <i class="far fa-thumbs-down"></i> </div>
+      <div class="score" style = "color:white;" id ="\3{{this._id}}_score">{{this.score}}</div>
+
+
+      <div class="course_type">
+        Type: <span class= "ressource_type" id = "{{this.type}}">{{this.type}}</span>
+        Source: <img src="http://localhost:8000/source_logos/{{this.source}}.svg" class = "ressource_image {{this.source}}"></span>
+
+        <!-- save unsave buttons -->
+
+        <span class = "save_post save {{this.saved}}" id = "\3s{{this._id}}" onclick ="save(this)">Save <i class="fas fa-check-circle"></i></span>
+        <span class = "save_post unsave {{this.saved}}" id = "\3s{{this._id}}" onclick ="unsave(this)">Unsave &#10799;</span>
+
+
+
+
+
+
+        <span class = "poster">Posted by : {{this.user}} <i class="fas fa-cannabis" style= "color:lightgreen"></i> <span style = "color:white;">{{this.weeds}}</span>
+      </div>
+
+
+      <div class="course_type responsive">
+        <ul style = "line-height:3em;">
+          <li>Type: <span class = "typeres" id = "{{this.type}}">{{this.type}}</span></li>
+          <li>Source: <img src="http://localhost:8000/source_logos/{{this.source}}.svg" id ="img"></span></li>
+          <li>Posted by : {{this.user}} <i class="fas fa-cannabis" style= "color:lightgreen"></i> <span style = "color:white;">{{this.weeds}}</span></li>
+          <li>
+          <span style = "margin:0;" class = "save_post save {{this.saved}}" id = "\3s{{this._id}}" onclick ="save(this)">Save <i class="fas fa-check-circle"></i></span>
+          <span style = "margin:0;" class = "save_post unsave {{this.saved}}" id = "\3s{{this._id}}" onclick ="unsave(this)">Unsave &#10799;</span>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </a>
+  {{/each}}
+  <div class="not_found" style = "display:{{display}};">
+    <span class = "unfound">No results matching {{search_value}}</span>
+  </div>
+  <div class = "back" style = "display:{{display}}; margin-top:20px;">
+    <a href="{{subject}}" class = "go_back"> Back to course page</a>
+  </div>
+</div>
+
+<div class="pagination">
+  <a href = "{{subject}}?page_number={{page_numberl}}" class = "prev {{arrow_status}}"><i class="fas fa-chevron-circle-left" style =" color:white;" ></i> </a>
+  <span class = "page_number {{arrow_status}}">{{page_number}}</span>
+  <a href="{{subject}}?page_number={{page_numberr}}" class = "next {{arrow_status}}"><i class="fas fa-chevron-circle-right" style = "color:white;"></i></a>
+</div>
+
+
+<script type="text/javascript">
+
+  const like = document.querySelectorAll('.arrow');
+  like.forEach((item) => {
+    item.addEventListener("click" , (e) => {
+      e.preventDefault();
+    });
+  });
+
+  function upvote(obj){
+
+
+
+    const arrows = document.querySelectorAll('#\\'+obj.id);
+
+
+
+    if(arrows[0].className.includes("green")) //this means that the course is already upvoted
+    {
+      //send a post request deleting the user from voters and recalculating the score
+      $.ajax({
+        url:"http://localhost:8000/neutral_vote",
+        type:"POST",
+        data:{clss : obj.id.substring(2)},
+        success: function(result){
+
+          document.querySelector("#\\"+obj.id+"_score").innerHTML = result.score;
+          arrows[0].classList.remove('green');
+          arrows[1].classList.remove('green');
+
+        }
+      });
+
+    }
+    else //the course is not upvoted leaving either neutral vote or downvoted
+    {
+
+      $.ajax({
+        url:"http://localhost:8000/up_vote",
+        type:"POST",
+        data:{clss : obj.id.substring(2)},
+        success: function(result){
+          arrows[0].classList.add('green');
+          arrows[1].classList.add('green');
+
+          arrows[1].classList.remove('red');
+
+          document.querySelector("#\\"+obj.id+"_score").innerHTML = result.score;
+
+        }
+      });
+    }
+
+    //change in weeds
+    $.ajax({
+      url:"http://localhost:8000/weeds",
+      type:"POST",
+      success : function(result){
+        console.log(result);
+      }
+    });
+
+  }
+
+  function downvote(obj){
+    const arrows = document.querySelectorAll('#\\'+obj.id);
+
+    if(arrows[1].className.includes("red")) //means that the course is already downvoted
+    {
+      $.ajax({
+        url:"http://localhost:8000/neutral_vote",
+        type:"POST",
+        data:{clss:obj.id.substring(2)},
+        success: function(result){
+
+          arrows[1].classList.remove('red');
+          arrows[0].classList.remove('red');
+
+          document.querySelector("#\\"+obj.id+"_score").innerHTML = result.score;
+
+        }
+      });
+    }
+    else //course is either upvoted or neutral
+    {
+
+      $.ajax({
+        url:"http://localhost:8000/down_vote",
+        type:"POST",
+        data:{clss:obj.id.substring(2)},
+
+        success:function(result){
+
+          arrows[0].classList.add("red");
+          arrows[1].classList.add("red");
+          arrows[0].classList.remove('green'); //remove the green color from the upvote sign
+
+          document.querySelector("#\\"+obj.id+"_score").innerHTML = result.score;
+
+        }
+      });
+
+    }
+    //change in weeds
+    $.ajax({
+      url:"http://localhost:8000/weeds",
+      type:"POST",
+      success : function(result){
+        console.log(result);
+      }
+    });
+  }
+
+   const save_buttons = document.querySelectorAll(".save_post");
+   save_buttons.forEach((item) => {
+     item.addEventListener('click' , e => {
+       e.preventDefault();
+     });
+  });
+
+  function save(obj)
+  {
+    const save_course = document.querySelectorAll('#\\'+obj.id);
+    save_course[0].style.display = "block";
+    save_course[1].style.display = "none";
+    save_course[3].style.display = "none";
+    save_course[2].style.display = "inline-block";
+    save_course[4].style.display = "inline-block";
+
+    // send a post request to save the course
+    $.ajax({
+      url:"http://localhost:8000/save",
+      data:{id:obj.id.substring(3)},
+      type:"POST"
+    });
+  }
+
+  function unsave(obj)
+  {
+    const save_course = document.querySelectorAll('#\\'+obj.id);
+    save_course[0].style.display = "none";
+    save_course[1].style.display = "inline-block";
+    save_course[3].style.display = "inline-block";
+    save_course[2].style.display = "none";
+    save_course[4].style.display = "none";
+
+    $.ajax({
+      url:"http://localhost:8000/unsave",
+      data:{id:obj.id.substring(3)},
+      type:"POST"
+    });
+  }
+
+
+
+
+</script>

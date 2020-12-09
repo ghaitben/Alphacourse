@@ -1,0 +1,35 @@
+<div class="appearing_page">
+  <form class="form" action="http://localhost:8000/user/register" method="post">
+  <div class="form_title">
+    Get started with AlphaCourse !
+  </div>
+  {{> errors}}
+  <div class="input_1">
+    <input name = "username" value = "{{username}}" type="text" class ="form_input_1" id = "susername" placeholder=" " spellcheck="false">
+    <label for="susername" class = "placeholder">Username</label>
+  </div>
+
+  <div class="input_2">
+    <input name ="email" value = "{{email}}" type="email" class ="form_input_1" id = "email" placeholder=" " spellcheck="false">
+    <label for="email" class = "placeholder">Email</label>
+  </div>
+
+  <div class="input_3">
+    <input name = "password" value = "{{password}}" type="password" class = "form_input_1" id = "password2" placeholder = " " spellcheck="false"  style="-webkit-text-security:square;">
+    <label for="password2" class = "placeholder">Password</label>
+  </div>
+
+  <div class="signupform">
+    <input name ="cpassword" value = "{{cpassword}}" type="password" class = "form_input_1" id = "cpassword" placeholder = " " spellcheck="false"  style="-webkit-text-security:square;">
+    <label for="cpassword" class = "placeholder">Confirm password</label>
+  </div>
+
+  <div class="input_5">
+    <button type="submit" class="login" id ="signup_button">Sign Up</button>
+  </div>
+  <div class="signup">
+  <p class = "signuptext">Already have an account ? <a href = "http://localhost:8000/user/login" class ="login_redirect">Log In</a></p>
+  </div>
+
+</form>
+</div>

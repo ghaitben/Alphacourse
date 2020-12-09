@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>AlphaCourse</title>
+
+		<link type="text/css" rel="stylesheet" href="http://localhost:8000/main.css">
+		<script src="https://kit.fontawesome.com/12c93efb8a.js" crossorigin="anonymous"></script>
+
+
+
+
+	</head>
+
+	<body>
+
+		<nav class ="nav1 {{status}}">
+
+			<ul>
+				<li id = "item1" class = "nav_item">logo</li>
+
+				<a href="/user/signup"><li id = "item4" class = "nav_item"> SIGN UP </li></a>
+				<a href="/user/login"><li id = "item3" class = "nav_item">LOG IN</li></a>
+
+				<a href="/subjects"> <li class = "nav_li browse">Browse Subjects</li> </a>
+				<a href="/share/choose_subject"> <li class = "nav_li">Share Ressource</li> </a>
+
+
+			</ul>
+
+		</nav>
+
+		<nav class = "nav2 {{status}}">
+
+			<ul>
+				<li id = "item1" class = "nav_item">logo</li>
+				<li class = "nav_item username">{{username}}</li>
+				<li class = "nav_item username contribs"> <i class="fas fa-cannabis"></i> {{weeds}} </li>
+				<a href="/profile"><li class ="logout">Saved</li> </a>
+				<a href="/logout"><li class = "logout"> Log Out</li></a>
+				<a href="/subjects"> <li class = "nav_li browse">Browse Subjects</li> </a>
+				<a href="/share/choose_subject"> <li class = "nav_li">Share Ressource</li> </a>
+			</ul>
+
+		</nav>
+
+		<nav class = "responsive {{status}}">
+			<p id = "item1" class = "nav_item">logo</p>
+
+			<input style = "display:none;"type="checkbox" id ="menu">
+			<label class = "main_menu" for="menu"> <i id = "menu" class="fas fa-bars"></i>
+			</label>
+
+			<ul class = "navbar_mobile">
+
+				<a href="/subjects"> <li>Browse Subjects</li> </a>
+				<a href="/share/choose_subject"> <li>Share Ressource</li> </a>
+
+
+				<a href="/user/signup"><li id = "s3"> SIGN UP </li></a>
+				<a href="/user/login"><li id = "s4">LOG IN</li></a>
+			</ul>
+
+		</nav>
+
+		<nav class = "responsive2 {{status}}">
+			<p id = "item1" class = "nav_item">logo</p>
+
+			<input style = "display:none;"type="checkbox" id ="menu2">
+			<label class = "main_menu" for="menu2"> <i id = "menu" class="fas fa-bars"></i>
+			</label>
+
+			<ul class = "navbar_mobile">
+
+				<li style = "color:black;" >{{username}}</li>
+				<li > <i class="fas fa-cannabis" style= "color:#13aa52"></i> {{weeds}} </li>
+				<a href="/subjects"> <li >Browse Subjects</li> </a>
+				<a href="/share/choose_subject"> <li >Share Ressource</li> </a>
+				<a href="/logout"><li id = "s4"> Log Out</li></a>
+				<a href="/profile"><li id = "s4">Saved</li> </a>
+
+			</ul>
+
+		</nav>
+
+
+
+		<div class="home">
+			<div class = "line_1">
+				<p class = "text1">AlphaCourse is a place where people can share rank and discuss online educational ressources from
+				various websites.</p>
+				<img src="images/coding_.svg" class = "image1">
+			</div>
+
+			<div class = "line_2">
+				<img src="images/online_lesson_.svg" class = "image2">
+				<p class="text2">Over 50+ courses in 10+ subjects here on AlphaCourse, increasing everyday with your contribution.
+					<span class="buttons">
+						<a href="/subjects" class = "button2" style = "margin-bottom:20px;">Browse Subjects </a>
+						<a href="/share/choose_subject" class = "button2">Share a course</a>
+					</span>
+			</p>
+
+			</div>
+
+
+		</div>
+
+		<div class="sources">
+			Sources
+		</div>
+		<div class="subtext">
+			AlphaCourse represents the middleman between you and the different online learning websites.
+			We'll try to provide you with the best course to learn any subject you like from these sources.
+		</div>
+
+		<div class="images">
+			<img src="source_logos/reddit.svg" class ="source_image">
+			<img src="source_logos/coursera.svg" class = "source_image">
+			<img src="source_logos/udemy.svg" class ="source_image">
+			<img src="source_logos/edx.svg" class ="source_image">
+			<img src="source_logos/youtube.svg" class ="source_image">
+			<img src="source_logos/udacity.svg" class ="source_image">
+			<img src="source_logos/mit.svg" class ="source_image">
+		</div>
+
+
+
+		<footer class="footer">
+			<div style = "border-right:1px solid darkgrey;">
+				<span style="text-decoration:underline;">Tehnologies</span>
+				<ul>
+					<li class = "technologies">&#8226; HTML/CSS</li>
+					<li class = "technologies">&#8226; Javascript</li>
+					<li class = "technologies">&#8226; Node.js</li>
+					<li class = "technologies">&#8226; MongoDB</li>
+				</ul>
+			</div>
+			<div style = "border-right:1px solid darkgrey;">
+				<span style="text-decoration:underline;">AlphaCourse</span>
+				<ul>
+					<a href="http://localhost:8000/" ><li class = "technologies">
+						&#8226; Home</li></a>
+
+					<a href="http://localhost:8000/share/choose_subject" ><li class = "technologies">
+						&#8226; Add Ressource</li></a>
+
+					<a href="http://localhost:8000/subjects" ><li class = "technologies">
+						&#8226; Browse Subjects</li></a>
+				</ul>
+			</div >
+			<div>
+				<span style="text-decoration:underline;">Contact</span>
+				<ul>
+					<li class = "technologies"> &#8226; Discord: miloud#4968</li>
+					<li class = "technologies"> &#8226; Email: alphacourse@gmail.com</li>
+				</ul>
+			</div>
+
+		</footer>
+
+	</body>
+
+
+</html>

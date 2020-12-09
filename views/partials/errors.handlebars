@@ -1,0 +1,18 @@
+{{#each errors}}
+  <div class="error_message">
+    {{this.msg}}
+  </div>
+{{/each}}
+
+{{#each share_errors}}
+
+  <div class="error_message">
+    {{this.msg}}
+  </div>
+{{/each}}
+
+{{#if error_msg}}
+  <div class="error_message">
+    {{error_msg}}
+  </div>
+{{/if}}

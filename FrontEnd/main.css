@@ -1,0 +1,689 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+*
+{
+  margin:0;
+  padding:0;
+  list-style:none;
+
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  text-decoration: none;
+
+
+}
+body
+{
+  /* background-color: #15172b; */
+
+
+  background: linear-gradient(to bottom, #15172b, #2C3E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+/*---------Nav bar css-------------*/
+nav
+{
+  position:fixed;  /*sticky navbar*/
+  top:0px;
+  width:100%;
+  background-color: white;
+  height:70px;
+  z-index: 1;
+
+}
+
+.nav_item
+{
+    line-height: 4em;
+    display:inline-block;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;       /*nav items are unselectable now*/
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+}
+
+#item1
+{
+  float:left;
+  margin-left:100px;
+}
+
+#item3
+{
+  color:blue;
+  text-align:center;
+  font-weight: bold;
+  font-family: system-ui;
+  font-size: 16px;
+  float: right;
+  margin-right: 30px;
+  margin-top: 13px;
+  width:100px;
+  height:40px;
+  border:2px solid blue;
+  border-radius: 10px;
+  line-height: 2.75em;
+  transition:0.2s;
+
+}
+#item3:hover
+{
+  cursor:pointer;
+  background-color: blue;
+  color:white;
+  transition: 0.2s;
+}
+#item3:active
+{
+  transform: translateY(8px);
+  transition: transform 0.3s;
+
+}
+
+#item4
+{
+  font-family: system-ui ;
+  font-weight: bold;
+  color:green;
+  text-align: center;
+  float:right;
+  margin-right: 60px;
+  margin-top: 13px;
+  font-weight: bold;
+  width:100px;
+  height:40px;
+  border:2px solid #13aa52;
+  text-align: center;
+  border-radius: 10px;
+  line-height: 2.75em;
+  transition: 0.2s;
+}
+#item4:hover
+{
+  cursor:pointer;
+  background-color:#13aa52;
+  color:white;
+  transition: 0.2s;
+}
+#item4:active
+{
+  transform : translateY(8px);
+  transition : transform 0.3s;
+}
+.nav_item.username
+{
+  float:right;
+  margin-right:101px;
+  font-family:"Poppins",sans-serif;
+  font-weight:bold;
+  line-height: 2.6em;
+}
+.nav_item.username.contribs
+{
+  line-height:6em;
+  margin-right: -95px;
+  min-width: 100px;
+  color:#13aa52;
+}
+.nav_li
+{
+  font-family: 'Poppins', sans-serif;
+  display:inline;
+  float:left;
+  color:grey;
+  font-weight:bold;
+  margin-right:50px;
+  margin-top:20px;
+  transition: all 0.2s;
+
+}
+.nav_li:hover
+{
+  color:#13aa52;
+  transition: all 0.2s;
+}
+.browse
+{
+  margin-left:150px;
+}
+.home
+{
+  /* z-index:-1; */
+  position:relative;
+}
+.line_1
+{
+  margin-top:150px;
+  display:flex;
+  justify-content: space-around;
+}
+.line_2
+{
+  margin-top:20px;
+  display:flex;
+  justify-content: space-around;
+  position: relative;
+}
+.image1
+{
+  height:400px;
+  /* margin-top:100px;
+  margin-left:60vw; */
+}
+.text1
+{
+  width:600px;
+  /* text-align: left; */
+  color:white;
+  /* position:absolute; */
+  /* left:10vw; */
+  /* top:180px; */
+
+  font-size:25px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+}
+.image2
+{
+  height:400px;
+  /* margin-left:10vw;
+  margin-bottom:150px; */
+}
+.text2
+{
+  /* margin-bottom:50px; */
+  width:600px;
+  /* text-align: left; */
+  color:white;
+  font-size:25px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  /* position:absolute; */
+  /* right:10vw; */
+  /* bottom:300px; */
+}
+.buttons
+{
+  display:block;
+  margin-top:20px;
+
+}
+.button2
+{
+  margin-right:40px;
+  display:inline-block;
+  color:white;
+  box-sizing: border-box;
+  padding:10px;
+  font-size:18px;
+  border:3px solid #13aa52;
+  background-color:#13aa52;
+  border-radius:15px;
+  font-weight:bold;
+  cursor:pointer;
+
+}
+.button2:hover
+{
+
+  background-color:transparent;
+  transition: all 0.2s;
+}
+
+
+/* .button
+{
+  display:inline;
+  margin-right:25px;
+  box-sizing: border-box;
+  padding:10px;
+  color:rgba(255,255,255,0.7);
+  border:3px solid #13aa52;
+  background-color:#13aa52;
+  color:white;
+  font-family: 'Poppins', sans-serif;
+  border-radius:15px;
+  font-weight:bold;
+  font-size:18px;
+  transition: all 0.2s;
+}
+
+
+ */
+
+.sources
+{
+  color:white;
+  font-family: 'Poppins', sans-serif;
+  font-size:28px;
+  text-align:center;
+  font-weight:bold;
+}
+
+.subtext
+{
+
+  text-align: center;
+  margin:auto;
+  margin-top:10px;
+  width:800px;
+  color:darkgrey;
+  font-family: 'Poppins', sans-serif;
+  font-size:18px;
+}
+
+.images
+{
+  text-align: center;
+}
+
+.source_image
+{
+  height:50px;
+  background-color:rgba(255,255,255,0.7);
+  border-radius:10px;
+  padding:10px;
+  width:100px;
+  margin-top:50px;
+  margin-bottom: 100px;
+}
+/*css for footer*/
+.footer
+{
+  height:300px;
+  background-color: #15172b;
+  display:flex;
+  justify-content: space-around;
+  color:white;
+  font-family: "Poppins",sans-serif;
+  /* font-family: Benton Sans ,Arial, Helvetica Neue, Helvetica, Sans-serif; */
+  font-weight:bold;
+
+}
+.footer > div
+{
+
+  margin-top:50px;
+  margin-bottom:50px;
+  width:30%;
+  text-align: center;
+
+}
+.footer > div > ul
+{
+  margin-top:20px;
+}
+
+/* .have_vertical_bar
+{
+  border-right:2px solid rgba(255,255,255,0.7);
+} */
+.technologies
+{
+  /* font-family: Benton Sans ,Arial, Helvetica Neue, Helvetica, Sans-serif;
+  font-size: 15px;*/
+  color:rgba(255,255,255,0.7);
+  line-height: 2em;
+
+
+
+}
+/*END of footer CSS*/
+
+
+/*CSS of the template of the course pages*/
+.subject
+{
+  height:100px;
+  background-color:rgba(0,0,0,0.7);
+  margin-top:70px;
+  text-align: center;
+  font-size:20px;
+  font-weight:bold;
+  font-family: sans-serif;
+  padding:40px;
+  box-sizing:border-box;
+  color:white;
+  position:relative;
+}
+
+.sharing
+{
+
+  font-size: 20px;
+  font-weight: bold;
+  font-family: system-ui;
+  margin-top:5px;
+  margin-right:50px;
+  float:right;
+  background-color:#fff;
+  padding:15px;
+  box-sizing: border-box;
+  color:blue;
+  border-radius:10px;
+  transition: all 0.2s;
+  border:2px solid blue;
+}
+.sharing:hover
+{
+  background-color:blue;
+  color:white;
+  cursor:pointer;
+}
+.sharing:active
+{
+
+
+  transform: translateY(8px);
+  transition: transform 0.3s;
+
+
+}
+.content
+{
+  margin : 50px 450px 0px 60px;
+  background-color: white;
+
+}
+
+.course
+{
+  border: 3px solid black;
+  border-radius:20px;
+  padding:10px 40px 40px 40px;
+  position:relative;
+  margin-bottom: 30px;
+  transition: all 0.2s;
+  background-color:white;
+  color:black;
+
+}
+.course:hover
+{
+  cursor:pointer;
+  box-shadow: 0 0 4pt 4pt lightgrey;
+}
+
+
+/*CSS for inside the course area*/
+
+.title
+{
+
+
+  text-decoration: none;
+  font-size: 20px;
+  font-weight:bold;
+  font-family:sans-serif;
+  margin:0px 10px 30px 20px;
+  line-height: 1.6em;
+
+}
+.source
+{
+  position:absolute;
+  left:4%;
+  bottom:10px;
+  font-size: 20px;
+  font-family:sans-serif;
+  color:#06b;
+  display:inline;
+  font-weight:bold;
+
+}
+.source.type
+{
+  left:20%;
+  bottom:12px;
+}
+.source_img
+{
+  position:absolute;
+  left:10%;
+  bottom:10px;
+  height:27px;
+}
+
+.type_course
+{
+
+  background-color:green;
+  color:white;
+  border-radius:25px;
+  padding:7px;
+  font-weight: bold;
+  font-family:sans-serif;
+  box-sizing:border-box;
+  font-size:18px;
+  display: inline-block;
+  position: absolute;
+  left:25%;
+  bottom:5px;
+}
+.type_road_map
+{
+  background-color:blue;
+  color:white;
+  border-radius:25px;
+  box-sizing:border-box;
+  font-size:19px;
+  padding:7px;
+}
+
+/*CSS for the upvoting/downvoting system*/
+.arrow_top
+{
+  font-size:25px;
+  position: absolute;
+  left:1%;
+  top:10px;
+  color:#47476b;
+}
+
+.arrow_bot
+{
+  font-size:25px;
+  position: absolute;
+  left:1%;
+  top: 60px;
+
+  color:#47476b;
+}
+.clickable:hover
+{
+  cursor:pointer;
+}
+.score
+{
+  position: absolute;
+  left:0%;
+  top:39px;
+  font-size:17px;
+  font-weight:bold;
+  text-align: center;
+  min-width: 50px;
+  color:green;
+}
+.logout
+{
+  float:right;
+  margin-right:20px;
+  border: 2px solid blue;
+  border-radius:10px;
+  font-family:system-ui;
+  font-weight:bold;
+  box-sizing: border-box;
+  padding:5px;
+  padding-top:8px;
+  padding-bottom:8px;
+  color:blue;
+  width:100px;
+  transition: all 0.2s;
+  cursor:pointer;
+  margin-top:17px;
+
+  text-align: center;
+}
+.logout:hover
+{
+  color:white;
+  background-color:blue;
+  transition: all 0.2s;
+}
+
+/* nav status */
+.nav1 , .nav2
+{
+  display:none;
+}
+
+.nav1.logged
+{
+  display:none;
+}
+.nav2.logged
+{
+  display:block;
+}
+
+.nav1.not_logged
+{
+  display:block;
+}
+.nav2.not_logged
+{
+  display:none;
+}
+.responsive
+{
+  display:none;
+}
+
+#menu , #menu2
+{
+  float:right;
+  color:grey;
+  font-size:30px;
+  margin-right:50px;
+  margin-top:15px;
+  cursor:pointer;
+}
+.navbar_mobile
+{
+  border-top:2px solid black;
+  height:100vh;
+  width:100%;
+  margin-top:70px;
+  position:fixed;
+  left:-1050px;
+  background-color:white;
+  transition: all 0.5s ease-in-out;
+  text-align: center;
+  line-height: 5em;
+}
+
+#menu:checked + label + ul , #menu2:checked + label + ul
+{
+
+  text-align: center;
+  line-height: 5em;
+  transform:translateX(1050px);
+  transition: all 0.5s ease-in-out;
+}
+
+
+.navbar_mobile li
+{
+  color:grey;
+  font-family:"Poppins",sans-serif;
+  font-size:18px;
+  font-weight:bold;
+}
+.navbar_mobile li:hover
+{
+  color:black;
+}
+#s3
+{
+  border: 1px solid #13aa52;
+  border-radius: 20px;
+  box-sizing:border-box;
+  color:#13aa52;
+  margin:auto;
+  height:50px;
+  width:150px;
+  line-height: 50px;
+}
+#s3:hover
+{
+  background-color:#13aa52;
+  color:white;
+}
+#s4
+{
+  border: 1px solid blue;
+  border-radius: 20px;
+  box-sizing:border-box;
+  color:#13aa52;
+  height:50px;
+  width:150px;
+  line-height: 50px;
+  margin:auto;
+  color:blue;
+  margin-top:20px;
+
+}
+#s4:hover
+{
+  background-color:blue;
+  color:white;
+}
+
+.logout2
+{
+  color:blue;
+  border:2px solid blue;
+
+}
+
+
+/* responsive nav bar when logged */
+.responsive , .responsive2
+{
+  display:none;
+}
+
+
+
+/* responsive design */
+@media screen and (max-width:1050px) {
+  .text1 , .text2
+  {
+    font-size:20px;
+  }
+  .responsive.logged
+  {
+    display:none;
+  }
+  .responsive2.logged
+  {
+    display:block;
+  }
+
+  .responsive.not_logged
+  {
+    display:block;
+  }
+  .responsive2.not_logged
+  {
+    display:none;
+  }
+  .nav1 ul , .nav2 ul
+  {
+    display:none;
+  }
+}

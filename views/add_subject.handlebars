@@ -1,0 +1,137 @@
+<div class="form_title">
+  Add a new subject to the AlphaCourse collection.
+</div>
+{{> errors}}
+
+
+<form action="/add_subject" method="POST">
+
+<div class="input_1">
+  <input type="text" class = "form_input_1" id = "subject2" placeholder = " " name = "subject" spellcheck="false" style = "width:80%">
+  <label for="subject2" class = "placeholder ptitle">Subject</label>
+</div>
+
+<div class = "input_1">
+  <textarea class ="form_input_1" id = "title" name ="title" placeholder=" " style="height:150px; width:80%;" rows="8" cols="80"></textarea>
+  <label for="title"  class = "placeholder ptitle">Title</label>
+</div>
+
+<div class="input_2">
+	<input type="text" class = "form_input_1" id = "link" placeholder = " " name = "link" spellcheck="false" style = "width:80%">
+	<label for="link" class = "placeholder ptitle">link</label>
+</div>
+
+<div class="input_3 share">
+  <span class = "type">Select the type of ressource:</span>
+
+  <label for="course" class = "first_labels" id = "r_course">Course
+  <input type="radio" id="course" name="type" class = "radio first" value = "course">
+  </label>
+
+  <label for="RoadMap" class = "first_labels" id = "r_roadmap">RoadMap
+  <input type="radio" id="RoadMap" name="type" class = "radio first" value = "roadmap">
+  </label>
+
+  <label for="Book" class = "first_labels" id = "r_book">Book
+  <input type="radio" id="Book" name="type" class = "radio first" value ="book">
+  </label>
+
+</div>
+
+<div class="input_4">
+
+
+
+  <span class = "type" id ="select_source">Select the source:</span>
+
+  <input type="radio" id = "reddit" name = "source" value ="reddit">
+  <label for="reddit">
+    <img src="http://localhost:8000/source_logos/reddit.svg" class ="source_image">
+  </label>
+
+  <input type="radio" id = "coursera" name = "source" value = "coursera">
+  <label for="coursera">
+    <img src="http://localhost:8000/source_logos/coursera.svg" class = "source_image">
+  </label>
+
+  <input type="radio" id = "udemy" name = "source" value = "udemy">
+  <label for="udemy">
+    <img src="http://localhost:8000/source_logos/udemy.svg" class ="source_image">
+  </label>
+
+  <input type="radio" id = "edx" name = "source" value = "edx">
+  <label for="edx">
+    <img src="http://localhost:8000/source_logos/edx.svg" class ="source_image">
+  </label>
+
+  <input type="radio" id = "youtube" name = "source" value = "youtube">
+  <label for="youtube">
+    <img src="http://localhost:8000/source_logos/youtube.svg" class ="source_image">
+  </label>
+
+  <input type="radio" id = "udacity" name = "source" value = "udacity">
+  <label for="udacity">
+    <img src="http://localhost:8000/source_logos/udacity.svg" class ="source_image">
+  </label>
+
+  <input type="radio" id = "mit" name = "source" value = "mit">
+  <label for="mit">
+    <img src="http://localhost:8000/source_logos/mit.svg" class ="source_image">
+  </label>
+
+
+  <input type="radio" name="source" id = "other2" value = "other">
+  <label for="other2">
+    <div class="source_image">
+      <span id = "other">Other</span>
+    </div>
+  </label>
+
+
+
+</div>
+
+
+
+<div class="input_5">
+
+  <button type ="submit"  class="login">Submit</button>
+
+</div>
+</form>
+
+<!-- <label for="reddit" class = "first_labels plus" id="reddit">
+  <img src="source_logos/reddit.svg" style = "width:80px;">
+  <input type="radio"  name="source" class = "radio first">
+</label>
+
+
+
+
+
+<label for="youtube" class = "first_labels plus" id="youtube">
+  <img src="source_logos/youtube.svg" style="width:80px;">
+  <input type="radio" name="source" class = "radio first">
+</label>
+
+
+
+<label for="edx" class = "first_labels plus">edx
+<input type="radio" id="edx" name="source" class = "radio first">
+</label>
+
+<label for="coursera" class = "first_labels plus">coursera
+<input type="radio" id="coursera" name="source" class = "radio first">
+</label>
+
+<label for="udacity" class = "first_labels plus">udacity
+<input type="radio" id="udacity" name="source" class = "radio first">
+</label>
+
+<label for="MIT" class = "first_labels plus">MIT
+<input type="radio" id="MIT" name="source" class = "radio first">
+</label>
+
+<label for="other" class = "first_labels plus">Other
+<input type="radio" id="other" name="source" class = "radio first">
+</label> -->

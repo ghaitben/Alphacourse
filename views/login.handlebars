@@ -1,0 +1,35 @@
+<div class="appearing_page" id = "login_page">
+  <form  action="/user/login" method="post">
+
+  <div class="form_title">
+    Welcome Back to AlphaCourse !
+  </div>
+
+  {{> errors}}
+  {{> success}}
+
+  <div class = "input_1">
+
+    <input name = "username" type="text" class ="form_input_1" id = "username" placeholder= " " spellcheck="false">
+
+    <label for="username" class = "placeholder">Username</label>
+
+  </div>
+
+  <div class="input_2">
+    <input name = "password"  type="password" class = "form_input_1" id = "password" placeholder= " " spellcheck="false"  style="-webkit-text-security:square;">
+    <label for="password" class = "placeholder">Password</label>
+  </div>
+
+  <div class="input_3">
+    <button type="submit" class="login" id = "login_button">Log In</button>
+  </div>
+  <div class="forgot_pass">
+    <small> Password forgotten ?  <span class = "signuptext">  <a href="http://localhost:8000/user/forgot_password" id ="forgpass"> click here</a> </span></small>
+  </div>
+  <div class="signup">
+  <p class = "signuptext">Don't have an account yet ? <a href="http://localhost:8000/user/signup" class ="signup_redirect">Sign up here !</a></p>
+  </div>
+
+  </form>
+</div>

@@ -1,0 +1,36 @@
+<div class="appearing_page" id = "login_page">
+
+  <div class="form_title">
+    A token has been sent to your email address , Paste it here.
+  </div>
+
+  {{> errors}}
+  {{> success}}
+
+
+<form action="http://localhost:8000/user/update_password" method="post">
+
+      
+  <div class = "input_1">
+
+    <input name = "token" type="text" class ="form_input_1" id = "token" placeholder= " " spellcheck="false" style = "width:50%;">
+
+    <label for="token" class = "placeholder" style ="left:26%;">Token</label>
+
+  </div>
+  <div class="input_2">
+    <input name = "password"  type="password" class = "form_input_1" id = "password" placeholder= " " spellcheck="false"  style="-webkit-text-security:square;">
+    <label for="password" class = "placeholder">Password</label>
+  </div>
+
+  <div class="input_2">
+    <input name = "cpassword"  type="password" class = "form_input_1" id = "cpassword" placeholder= " " spellcheck="false"  style="-webkit-text-security:square;">
+    <label for="cpassword" class = "placeholder">Confirm password</label>
+  </div>
+
+  <div class="input_3">
+
+    <button type="submit" class="login" id = "login_button" style = "font-size:17px;">Submit</button>
+
+  </div>
+</form>

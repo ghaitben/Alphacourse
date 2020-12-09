@@ -1,0 +1,56 @@
+<h1>Browse our collection of subjects</h1>
+<span>Want to add a new subject ? <a href="/add_subject" style ="color:inherit;"><span class = "click_here">Click here</span> </span></a>
+<div >
+
+  <input type="text" class = form_input_1 id = "search_bar" placeholder="Search for a subject...">
+</div>
+
+
+
+<div class="container">
+  {{#each subjects}}
+  <a href="/courses/{{this}}">
+  <div class = "box">
+    {{this}}
+  </div>
+  </a>
+  {{/each}}
+</div>
+
+
+
+
+<!-- script for dynamic search -->
+<script type="text/javascript">
+const search_bar = document.querySelector('#search_bar');
+const container = document.querySelector('.container');
+const subs = document.querySelectorAll('.box');
+let subjects = [];
+for(var i = 0; i < subs.length ; i++)
+{
+  subjects.push(subs[i].innerHTML);
+}
+
+
+search_bar.addEventListener('keyup' , () => {
+  let elements = [];
+  for(var i = 0 ; i < subjects.length ; i++)
+  {
+    if(subjects[i].toLowerCase().includes(search_bar.value.toLowerCase()))
+    {
+      elements.push(subjects[i]);
+    }
+  }
+
+  buildContainer(elements);
+
+});
+
+function buildContainer(elements){
+  container.innerHTML = "";
+  for(var i = 0 ; i < elements.length ; i ++)
+  {
+    container.innerHTML += `<a href ="#"> <div class = "box"> ${elements[i]} </div> </a>`;
+  }
+}
+</script>
