@@ -1,4 +1,9 @@
-<div class="form_title">
+<div style = "text-align:left;width:300px;">
+
+<a href="/"><img style = "height:150px;width:auto"src="/images/logo3.svg"></a>
+</div>
+
+<div class="form_title" style = "margin-top:-120px;">
   Add a new subject to the AlphaCourse collection.
 </div>
 {{> errors}}
@@ -23,8 +28,12 @@
 
 <div class="input_3 share">
   <span class = "type">Select the type of ressource:</span>
-
-  <label for="course" class = "first_labels" id = "r_course">Course
+  <select class="select" name="type">
+    <option value="course">Course</option>
+    <option value="roadmap">Road Map</option>
+    <option value="book">Book</option>
+  </select>
+  <!-- <label for="course" class = "first_labels" id = "r_course">Course
   <input type="radio" id="course" name="type" class = "radio first" value = "course">
   </label>
 
@@ -34,7 +43,7 @@
 
   <label for="Book" class = "first_labels" id = "r_book">Book
   <input type="radio" id="Book" name="type" class = "radio first" value ="book">
-  </label>
+  </label> -->
 
 </div>
 
@@ -42,8 +51,20 @@
 
 
 
-  <span class = "type" id ="select_source">Select the source:</span>
+  <span class = "type" style = "margin-top:5px;" id ="select_source">Select the source:</span>
 
+  <select class="select" name="source">
+    <option value="reddit">Reddit</option>
+    <option value="youtube">Youtube</option>
+    <option value="coursera">Coursera</option>
+    <option value="udemy">Udemy</option>
+    <option value="mit">MIT OCW</option>
+    <option value="udacity">Udacity</option>
+    <option value="edx">Edx</option>
+    <option value="other">Other</option>
+
+  </select>
+<!--
   <input type="radio" id = "reddit" name = "source" value ="reddit">
   <label for="reddit">
     <img src="http://localhost:8000/source_logos/reddit.svg" class ="source_image">
@@ -88,7 +109,7 @@
   </label>
 
 
-
+ -->
 </div>
 
 

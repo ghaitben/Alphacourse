@@ -5,14 +5,19 @@ const passport = require('passport');
 const nodemailer = require('nodemailer');
 const {ensureAuthenticated} = require('../config/auth');
 const {v4:uuidv4} = require('uuid');
+const Recaptcha = require('express-recaptcha').RecaptchaV2;
+
+var recaptcha = new Recaptcha('6LdxFwEaAAAAAE7wCLHWr73HacPSuEAyIxjuTcaT', '6LdxFwEaAAAAAOhDal1dgvjLVlMLl0-RcgECvoOX', {'theme':'dark'});
+console.log(recaptcha);
 
 const router = express.Router();
 const User = require('../models/User');
 
 //login handler
-router.get('/login' , (req , res) => {
+router.get('/login' ,recaptcha.middleware.renderWith({"theme":"dark"}), (req , res) => {
 
   res.render('login',{
+    captcha:res.recaptcha,
     layout:"data_entry.handlebars"
   })
 
@@ -28,21 +33,30 @@ router.get('/signup' , (req , res) => {
 
 });
 
+function captchaVerification(req, res, next) {
 
 
-router.post('/login', (req , res, next) => {
+    if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+        req.flash('error_msg','reCAPTCHA Incorrect');
+        res.redirect(req.originalUrl);
 
-  passport.authenticate('local', {
-    successRedirect: "/",
-    failureRedirect:'/user/login',
-    failureFlash:true
-  })(req , res , next);
+    } else {
+        return next();
+    }
+}
 
+router.post('/login', captchaVerification, (req , res, next) => {
+
+      passport.authenticate('local', {
+        successRedirect: "/",
+        failureRedirect:'/user/login',
+        failureFlash:true
+      })(req , res , next);
 });
 
 //add the user to the database when sending a post request to user/register
 
-router.post('/register',(req , res) => {
+router.post('/signup',captchaVerification , (req , res) => {
 
   //code to pass the registration process
   const {username , email , password , cpassword} = req.body;

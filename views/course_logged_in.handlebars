@@ -1,6 +1,6 @@
 <nav class = "course_navbar">
   <ul>
-    <li id = "item1" class = "nav_item">logo</li>
+    <a href="/"><img class = "logo_image" src="/images/logo3.svg"></a>
     <li id = "subject">{{subject}}</li>
     <li class = "nav_item username">{{username}}</li>
     <li class = "nav_item username contribs"> <i class="fas fa-cannabis"></i> {{weeds}} </li>
@@ -13,7 +13,7 @@
 </nav>
 
 <nav class = "responsive_nav">
-  <p style = "color:black;" id = "logo">logo</p>
+  <a href="/"><img class = "logo_image" src="/images/logo3.svg"></a>
   <input style = "display:none;"type="checkbox" id ="menuc">
   <label class = "main_menu" for="menuc"> <i id = "menuc" class="fas fa-bars"></i>
   </label>
@@ -53,15 +53,18 @@
         <i class="fas fa-check-circle"></i> Saved
       </div>
 
+      <div class="trash {{this.admin}}" id = "\3{{this._id}}"  onclick="deleteThis(this)">
+      <i id = "delete" class="fas fa-trash-alt"></i>
+      </div>
 
-      <div class="top_arrow arrow {{this.voters.color}}" id = "\3{{this._id}}" onclick = "upvote(this)"> <i class="far fa-thumbs-up" id ="up"></i> </div>
-      <div class="bot_arrow arrow {{this.voters.color}}" id = "\3{{this._id}}" onclick = "downvote(this)"> <i class="far fa-thumbs-down"></i> </div>
-      <div class="score" style = "color:white;" id ="\3{{this._id}}_score">{{this.score}}</div>
+      <div class="top_arrow arrow {{this.voters.color}}" id = "\3u{{this._id}}" onclick = "upvote(this)"> <i class="far fa-thumbs-up" id ="up"></i> </div>
+      <div class="bot_arrow arrow {{this.voters.color}}" id = "\3u{{this._id}}" onclick = "downvote(this)"> <i class="far fa-thumbs-down"></i> </div>
+      <div class="score" style = "color:white;" id ="\3u{{this._id}}_score">{{this.score}}</div>
 
 
       <div class="course_type">
         Type: <span class= "ressource_type" id = "{{this.type}}">{{this.type}}</span>
-        Source: <img src="http://localhost:8000/source_logos/{{this.source}}.svg" class = "ressource_image {{this.source}}"></span>
+        Source:<span class = "source_img">&#8226; {{this.source}}</span>
 
         <!-- save unsave buttons -->
 
@@ -80,7 +83,7 @@
       <div class="course_type responsive">
         <ul style = "line-height:3em;">
           <li>Type: <span class = "typeres" id = "{{this.type}}">{{this.type}}</span></li>
-          <li>Source: <img src="http://localhost:8000/source_logos/{{this.source}}.svg" id ="img"></span></li>
+          <li>Source:<span class = "source_img">&#8226; {{this.source}}</span></li>
           <li>Posted by : {{this.user}} <i class="fas fa-cannabis" style= "color:lightgreen"></i> <span style = "color:white;">{{this.weeds}}</span></li>
           <li>
           <span style = "margin:0;" class = "save_post save {{this.saved}}" id = "\3s{{this._id}}" onclick ="save(this)">Save <i class="fas fa-check-circle"></i></span>
@@ -128,9 +131,9 @@
     {
       //send a post request deleting the user from voters and recalculating the score
       $.ajax({
-        url:"http://localhost:8000/neutral_vote",
+        url:"/neutral_vote",
         type:"POST",
-        data:{clss : obj.id.substring(2)},
+        data:{clss : obj.id.substring(3)},
         success: function(result){
 
           document.querySelector("#\\"+obj.id+"_score").innerHTML = result.score;
@@ -145,9 +148,9 @@
     {
 
       $.ajax({
-        url:"http://localhost:8000/up_vote",
+        url:"/up_vote",
         type:"POST",
-        data:{clss : obj.id.substring(2)},
+        data:{clss : obj.id.substring(3)},
         success: function(result){
           arrows[0].classList.add('green');
           arrows[1].classList.add('green');
@@ -162,7 +165,7 @@
 
     //change in weeds
     $.ajax({
-      url:"http://localhost:8000/weeds",
+      url:"/weeds",
       type:"POST",
       success : function(result){
         console.log(result);
@@ -177,9 +180,9 @@
     if(arrows[1].className.includes("red")) //means that the course is already downvoted
     {
       $.ajax({
-        url:"http://localhost:8000/neutral_vote",
+        url:"/neutral_vote",
         type:"POST",
-        data:{clss:obj.id.substring(2)},
+        data:{clss:obj.id.substring(3)},
         success: function(result){
 
           arrows[1].classList.remove('red');
@@ -194,9 +197,9 @@
     {
 
       $.ajax({
-        url:"http://localhost:8000/down_vote",
+        url:"/down_vote",
         type:"POST",
-        data:{clss:obj.id.substring(2)},
+        data:{clss:obj.id.substring(3)},
 
         success:function(result){
 
@@ -212,7 +215,7 @@
     }
     //change in weeds
     $.ajax({
-      url:"http://localhost:8000/weeds",
+      url:"/weeds",
       type:"POST",
       success : function(result){
         console.log(result);
@@ -238,7 +241,7 @@
 
     // send a post request to save the course
     $.ajax({
-      url:"http://localhost:8000/save",
+      url:"/save",
       data:{id:obj.id.substring(3)},
       type:"POST"
     });
@@ -254,9 +257,31 @@
     save_course[4].style.display = "none";
 
     $.ajax({
-      url:"http://localhost:8000/unsave",
+      url:"/unsave",
       data:{id:obj.id.substring(3)},
       type:"POST"
+    });
+  }
+
+  const bins = document.querySelectorAll('.trash');
+  bins.forEach((item) => {
+    item.addEventListener('click' , (e) => {
+      e.preventDefault();
+    });
+  });
+
+
+
+  function deleteThis(obj){
+    const id = obj.id.substring(2);
+
+    $.ajax({
+      url:"/admin_delete",
+      type:"POST",
+      data:{course_id:id},
+      success:function(err , success){
+        location.reload(true);
+      }
     });
   }
 

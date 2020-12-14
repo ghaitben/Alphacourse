@@ -1,6 +1,10 @@
-<div class="appearing_page" id = "login_page">
-  <form  action="/user/login" method="post">
+<div style = "text-align:left;width:300px;">
 
+<a href="/"><img style = "height:150px;width:auto"src="/images/logo3.svg"></a>
+</div>
+
+<div class="appearing_page" id = "login_page" style = "margin-top:-130px;">
+  <form  action="/user/login" method="post">
   <div class="form_title">
     Welcome Back to AlphaCourse !
   </div>
@@ -20,15 +24,20 @@
     <input name = "password"  type="password" class = "form_input_1" id = "password" placeholder= " " spellcheck="false"  style="-webkit-text-security:square;">
     <label for="password" class = "placeholder">Password</label>
   </div>
+<!-- captcha -->
+  <div class="recaptcha" style = "text-align:center; margin-top:40px;">
+    <script src="//www.google.com/recaptcha/api.js" async defer></script><div class="g-recaptcha" data-sitekey="6LdxFwEaAAAAAE7wCLHWr73HacPSuEAyIxjuTcaT" data-theme="dark"></div>
+  </div>
 
+  <!-- end of captcha -->
   <div class="input_3">
     <button type="submit" class="login" id = "login_button">Log In</button>
   </div>
   <div class="forgot_pass">
-    <small> Password forgotten ?  <span class = "signuptext">  <a href="http://localhost:8000/user/forgot_password" id ="forgpass"> click here</a> </span></small>
+    <small> Password forgotten ?  <span class = "signuptext">  <a href="/user/forgot_password" id ="forgpass"> click here</a> </span></small>
   </div>
   <div class="signup">
-  <p class = "signuptext">Don't have an account yet ? <a href="http://localhost:8000/user/signup" class ="signup_redirect">Sign up here !</a></p>
+  <p class = "signuptext">Don't have an account yet ? <a href="/user/signup" class ="signup_redirect">Sign up here !</a></p>
   </div>
 
   </form>

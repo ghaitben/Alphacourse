@@ -1,6 +1,6 @@
 <nav class = "course_navbar">
   <ul>
-    <li id = "logo">logo</li>
+    <a href="/"><img class = "logo_image" src="/images/logo3.svg"></a>
     <li id = "subject">{{subject}}</li>
     <a href="/user/signup"><li id = "item4">SIGN UP</li></a>
     <a href="/user/login"><li id = "item3">LOG IN</li></a>
@@ -10,7 +10,7 @@
 </nav>
 
 <nav class = "responsive_nav">
-  <p style = "color:black;" id = "logo">logo</p>
+  <a href="/"><img class = "logo_image" src="/images/logo3.svg"></a>
   <input style = "display:none;"type="checkbox" id ="menuc">
   <label class = "main_menu" for="menuc"> <i id = "menuc" class="fas fa-bars"></i>
   </label>
@@ -49,12 +49,12 @@
 
       <div class="top_arrow arrow {{this.voters.color}}" id = "\3{{this._id}}" onclick = "upvote_lg(this)"> <i class="far fa-thumbs-up" id ="up"></i> </div>
       <div class="bot_arrow arrow {{this.voters.color}}" id = "\3{{this._id}}" onclick = "upvote_lg(this)"> <i class="far fa-thumbs-down"></i> </div>
-      <div class="score" id ="\3{{this._id}}_score">{{this.score}}</div>
+      <div class="score" id ="\3{{this._id}}_score"style = "color:white;">{{this.score}}</div>
 
 
       <div class="course_type">
         Type: <span class= "ressource_type" id = "{{this.type}}">{{this.type}}</span>
-        Source: <img src="http://localhost:8000/source_logos/{{this.source}}.svg" class = "ressource_image {{this.source}}">
+        Source: <span class = "source_img">&#8226; {{this.source}}</span>
         <span class = "poster">Posted by : {{this.user}} <i class="fas fa-cannabis" style= "color:lightgreen"></i> <span style = "color:white;">{{this.weeds}}</span></span>
       </div>
 
@@ -62,7 +62,7 @@
 
         <ul style = "line-height:3em;">
           <li>Type: <span class = "typeres" id = "{{this.type}}">{{this.type}}</span></li>
-          <li>Source: <img src="http://localhost:8000/source_logos/{{this.source}}.svg" id ="img"></span></li>
+          <li>Source: <span class = "source_img">&#8226; {{this.source}}</span></li>
           <li>Posted by : {{this.user}} <i class="fas fa-cannabis" style= "color:lightgreen"></i> <span style = "color:white;">{{this.weeds}}</span></li>
         </ul>
 

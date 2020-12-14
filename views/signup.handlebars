@@ -1,5 +1,10 @@
-<div class="appearing_page">
-  <form class="form" action="http://localhost:8000/user/register" method="post">
+<div style = "text-align:left;width:300px;">
+
+<a href="/"><img style = "height:150px;width:auto"src="/images/logo3.svg"></a>
+</div>
+
+<div class="appearing_page" style = "margin-top:-150px;">
+  <form class="form" action="/user/signup" method="post">
   <div class="form_title">
     Get started with AlphaCourse !
   </div>
@@ -22,6 +27,9 @@
   <div class="signupform">
     <input name ="cpassword" value = "{{cpassword}}" type="password" class = "form_input_1" id = "cpassword" placeholder = " " spellcheck="false"  style="-webkit-text-security:square;">
     <label for="cpassword" class = "placeholder">Confirm password</label>
+  </div>
+  <div class="recaptcha" style = "text-align:center; margin-top:40px;">
+    <script src="//www.google.com/recaptcha/api.js" async defer></script><div class="g-recaptcha" data-sitekey="6LdxFwEaAAAAAE7wCLHWr73HacPSuEAyIxjuTcaT" data-theme="dark"></div>
   </div>
 
   <div class="input_5">

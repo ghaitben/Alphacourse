@@ -20,7 +20,6 @@ body
 
 
   background: linear-gradient(to bottom, #15172b, #2C3E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
 }
 /*---------Nav bar css-------------*/
 nav
@@ -33,7 +32,15 @@ nav
   z-index: 1;
 
 }
-
+.logo_image
+{
+  cursor:pointer;
+  height:130px;
+  width:auto;
+  float:left;
+  margin-top:-30px;
+  margin-left:30px;
+}
 .nav_item
 {
     line-height: 4em;
@@ -271,7 +278,7 @@ nav
   margin:auto;
   margin-top:10px;
   width:800px;
-  color:darkgrey;
+  color:rgba(255,255,255,0.7);
   font-family: 'Poppins', sans-serif;
   font-size:18px;
 }
@@ -685,5 +692,12 @@ nav
   .nav1 ul , .nav2 ul
   {
     display:none;
+  }
+  .logo_image
+  {
+    height:80px;
+    width:auto;
+    margin-top:-10px;
+    margin-left:0;
   }
 }

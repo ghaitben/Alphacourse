@@ -53,7 +53,7 @@ app.all('/*', function(req, res, next) {
 
 //setting up the datbase
 
-const db = 'mongodb://127.0.0.1/database';
+const db = 'mongodb://mongo:27017/database';
 
 mongoose.set('useFindAndModify', false);
 
@@ -69,6 +69,7 @@ mongoose.connect(db , {
 
 
 //routes
+app.use(express.static(path.join(__dirname,"FrontEnd")));
 
 app.use('/',require('./routes/api'));
 
@@ -76,8 +77,11 @@ app.use('/user' , require('./routes/users'));
 
 
 
-app.use(express.static(path.join(__dirname,"FrontEnd")));
-
+app.get('*' , (req , res) => {
+  res.render('error_page',{
+    layout:"data_entry.handlebars"
+  })
+});
 
 
 

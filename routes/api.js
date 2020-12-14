@@ -11,7 +11,11 @@ const Course = require('../models/Course');
 
 //home page route
 
+
 router.get("/", (req , res) => {
+
+
+
   if(req.user)
   {
     User.find({username:req.user.username} , (err , user) => {
@@ -64,49 +68,95 @@ router.get('/share/choose_subject/:subject' , ensureAuthenticated ,(req , res) =
   const subject = req.params.subject;
 
   res.render('share',{
-    subject,
+    subject:clean(subject),
     layout:"data_entry.handlebars"
   });
 });
 
 
 //get the course page
-
-
+function clean(string){
+  if(string)
+  {
+    string = string.toLowerCase();
+    string = string.trim();
+    return string;
+  }
+  else
+  {
+    return null;
+  }
+}
 
 router.get("/courses/:subject",(req , res) => {
 
+
   const search_value = req.query.search ;
-  let query;
   const subject = req.params.subject;
+
+  let sub2 = clean(subject);
+
   const n_per_page = 10;
   let page_number = req.query.page_number || 1;
   page_number = (page_number <= 0) ? 1 : page_number;
+
   let bool;
+  let query;
+
+
+  //check if the user is the admin
+
+
+
+  //if the subject does not exist
+  Course.find({} , {subject:1 , _id :0} , (err , result) => {
+    if(err) throw err;
+    let array = [];
+    result.forEach((item) => {
+      item = clean(item.subject);
+      array.push(item);
+    });
+    req.session.subjects = array; //store the array of subjects
+  });
 
   if(search_value)
   {
-     query = {subject:subject , title : {$regex : ".*"+search_value+".*" , $options:"i"}};
+     query = {subject:sub2 , title : {$regex : ".*"+search_value+".*" , $options:"i"}};
      bool = "search";
   }
   else
   {
-    query = {subject:subject};
+    query = {subject:sub2};
   }
 
   Course.find(query , (err , results) => {
+    if(err) throw err;
     req.session.n_courses = results.length;
   });
 
   //find all courses in database
 
-  Course.find(query).lean().limit(n_per_page).skip(n_per_page*page_number - n_per_page)   //need to srt it by subject
+  Course.find(query).lean().limit(n_per_page).skip(n_per_page*page_number - n_per_page).sort({score:-1})  //need to srt it by subject
     .then((results) => {
       //results are the courses in the same subject
 
 
       if(req.user)
       {
+
+         let admin = req.user.username == "pillow2002" ? "admin" : "anything";
+         if(admin == "admin")
+         {
+           results.forEach((item) => {
+             item["admin"] = "admin";
+           });
+         }
+         else
+         {
+           results.forEach((item) => {
+             item["admin"] = "anything";
+           });
+         }
 
 
          for(var i = 0 ; i < results.length ; i++) //for every course in subject X
@@ -129,18 +179,28 @@ router.get("/courses/:subject",(req , res) => {
          let page_numberl = parseInt(page_number) - 1;
          let page_numberr = parseInt(page_number) + 1;
 
-         if(results.length == req.session.n_courses)
+         if(!req.session.subjects.includes(sub2))
+         {
+           res.render('error',{
+             layout:"data_entry.handlebars"
+           });
+         }
+
+
+         else if(results.length == req.session.n_courses) // only one page exists
          {
            if(results.length == 0)
            {
+
              res.render("course_logged_in",{
                username:req.user.username,
                weeds:req.user.weeds,
-               subject,
+               subject:clean(subject),
                results,
                page_number,
                page_numberl,
                page_numberr,
+               admin:admin,
                // bool,
                search_value:search_value,
                display:"block",
@@ -150,15 +210,18 @@ router.get("/courses/:subject",(req , res) => {
            }
            else
            {
+
              res.render("course_logged_in",{
                username:req.user.username,
                weeds:req.user.weeds,
-               subject,
+               subject:clean(subject),
                results,
                page_number,
                page_numberl,
                page_numberr,
                bool,
+
+               display:"none",
                search_value:search_value,
                arrow_status:"all",
                layout:"data_entry.handlebars"
@@ -169,15 +232,18 @@ router.get("/courses/:subject",(req , res) => {
 
          else if(page_number == Math.ceil(req.session.n_courses/n_per_page))
          {
+
            res.render("course_logged_in",{
              username:req.user.username,
              weeds:req.user.weeds,
-             subject,
+             subject:clean(subject),
              results,
              page_number,
              page_numberl,
              page_numberr,
              bool,
+
+             display:"none",
              search_value:search_value,
              arrow_status:"end",
              layout:"data_entry.handlebars"
@@ -188,12 +254,14 @@ router.get("/courses/:subject",(req , res) => {
            res.render("course_logged_in",{
              username:req.user.username,
              weeds:req.user.weeds,
-             subject,
+             subject:clean(subject),
              results,
              page_number,
              page_numberl,
              page_numberr,
              bool,
+
+             display:"none",
              search_value:search_value,
              arrow_status:"start",
              layout:"data_entry.handlebars"
@@ -204,11 +272,12 @@ router.get("/courses/:subject",(req , res) => {
            res.render("course_logged_in",{
              username:req.user.username,
              weeds:req.user.weeds,
-             subject,
+             subject:clean(subject),
              results,
              page_number,
              page_numberl,
              bool,
+             display:"none",
              page_numberr,
              search_value:search_value,
              layout:"data_entry.handlebars"
@@ -222,12 +291,19 @@ router.get("/courses/:subject",(req , res) => {
         let page_numberl = parseInt(page_number) - 1;
         let page_numberr = parseInt(page_number) + 1;
 
-        if(results.length == req.session.n_courses)
+        if(!req.session.subjects.includes(sub2))
+        {
+          res.render('error',{
+            layout:"data_entry.handlebars"
+          });
+        }
+
+        else if(results.length == req.session.n_courses)
         {
           if(results.length == 0)
           {
             res.render("course",{
-              subject,
+              subject:clean(subject),
               results,
               page_number,
               page_numberl,
@@ -242,12 +318,13 @@ router.get("/courses/:subject",(req , res) => {
           else
           {
             res.render("course",{
-              subject,
+              subject:clean(subject),
               results,
               page_number,
               page_numberl,
               bool,
               page_numberr,
+              display:"none",
               search_value:search_value,
               arrow_status:"all",
               layout:"data_entry.handlebars"
@@ -258,12 +335,13 @@ router.get("/courses/:subject",(req , res) => {
         else if(page_number == Math.ceil(req.session.n_courses/n_per_page))
         {
           res.render("course",{
-            subject,
+            subject:clean(subject),
             results,
             page_number,
             page_numberl,
             page_numberr,
             bool,
+            display:"none",
             search_value:search_value,
             arrow_status:"end",
             layout:"data_entry.handlebars"
@@ -272,12 +350,13 @@ router.get("/courses/:subject",(req , res) => {
         else if(page_number == 1)
         {
           res.render("course",{
-            subject,
+            subject:clean(subject),
             results,
             page_number,
             page_numberl,
             page_numberr,
             bool,
+            display:"none",
             search_value:search_value,
             arrow_status:"start",
             layout:"data_entry.handlebars"
@@ -286,12 +365,13 @@ router.get("/courses/:subject",(req , res) => {
         else
         {
           res.render("course",{
-            subject,
+            subject:clean(subject),
             results,
             page_number,
             page_numberl,
             page_numberr,
             bool,
+            display:"none",
             search_value:search_value,
             layout:"data_entry.handlebars"
           });
@@ -386,7 +466,7 @@ router.post('/share/choose_subject/:subject' , (req,res) => {
           link,
           type,
           source,
-          subject,
+          subject: clean(subject),
           voters:[{
             username:req.user.username,
             vote:1,
@@ -472,7 +552,7 @@ router.post('/add_subject' , (req , res) => {
           link,
           type,
           source,
-          subject,
+          subject:clean(subject),
           voters:[{
             username:req.user.username,
             vote:1,
@@ -484,7 +564,7 @@ router.post('/add_subject' , (req , res) => {
         course.score = calculateScore(course);
         course.save();
         req.flash('success_msg',"Subject added successfully");
-        res.redirect('/courses/'+subject);
+        res.redirect('/courses/'+clean(subject));
       }
 
       }
@@ -798,7 +878,11 @@ router.get('/profile' , (req , res) => {
   });
 });
 
-
+router.post('/admin_delete' ,ensureAuthenticated ,(req , res) => {
+  const id = req.body.course_id;
+  Course.deleteOne({_id:id} , (err , result) => {if(err) throw err;});
+  res.sendStatus(200);
+});
 
 
 
