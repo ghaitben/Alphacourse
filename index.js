@@ -53,7 +53,7 @@ app.all('/*', function(req, res, next) {
 
 //setting up the datbase
 
-const db = 'mongodb://mongo:27017/database';
+const db = 'mongodb://mongo:27017/AlphaCourse_prod';
 
 mongoose.set('useFindAndModify', false);
 
