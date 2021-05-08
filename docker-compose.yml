@@ -4,7 +4,7 @@ services:
   web:
     container_name: alpha
     restart: always
-    build: .
+    image: ghaitben/alphacourse:v1.1.7
 
     ports:
       - "8000:80"
@@ -13,5 +13,17 @@ services:
   mongo:
     container_name: mongo
     image: mongo
+    environment:
+       #provide your credentials here
+      - MONGO_INITDB_ROOT_USERNAME="miloudi98"
+      - MONGO_INITDB_ROOT_PASSWORD="1qsdqs54qdSDd1QQSdfQAZ54513"
+    volumes:
+      - mongodb:/data/db
+      - mongodb_config:/data/configdb
+
+
     ports:
       - "27017:27017"
+volumes:
+  mongodb:
+  mongodb_config:
